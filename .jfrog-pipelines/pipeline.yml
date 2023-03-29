@@ -52,9 +52,13 @@ pipelines:
           onExecute:
             - sudo apt install cmake
             - cd $shared_workspace/
-            - ls -l
+            #- ls -l
             - cd ./build
             - ls -l
             - ctest -C Debug --output-junit test_results.xml
+            - find ./ -name "*.xml"
             - ls -l
+            - ls -l ./bin
+            - ls -l ./Testing
+            - ls -l ./lib
             - save_tests test_results.xml
