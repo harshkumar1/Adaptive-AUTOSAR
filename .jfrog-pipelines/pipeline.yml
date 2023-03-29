@@ -11,7 +11,7 @@ pipelines:
     configuration:
       nodePool: default-dynamic-nodepool
     steps:
-      - name: docker_build_bash
+      - name: autosar_build_test
         type: Bash
         configuration:
           inputResources:
