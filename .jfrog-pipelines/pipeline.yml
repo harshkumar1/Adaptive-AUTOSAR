@@ -55,6 +55,6 @@ pipelines:
             - ls -l
             - cd ./build
             - ls -l
-            - ctest -C Debug --output-xunit test_results.xml
+            - ctest -C Debug --output-junit test_results.xml
             - ls -l
-            - save_tests $res_src_repo_resourcePath/build/Testing/
+            - save_tests test_results.xml
