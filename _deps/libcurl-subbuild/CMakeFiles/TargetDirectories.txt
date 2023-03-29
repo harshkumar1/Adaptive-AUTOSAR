@@ -1,0 +1,3 @@
+/Users/harshk/harsh_git/Adaptive-AUTOSAR/_deps/libcurl-subbuild/CMakeFiles/libcurl-populate.dir
+/Users/harshk/harsh_git/Adaptive-AUTOSAR/_deps/libcurl-subbuild/CMakeFiles/edit_cache.dir
+/Users/harshk/harsh_git/Adaptive-AUTOSAR/_deps/libcurl-subbuild/CMakeFiles/rebuild_cache.dir

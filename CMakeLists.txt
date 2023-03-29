@@ -584,6 +584,6 @@ if(build_tests)
   )
 
   include(GoogleTest)
-  gtest_discover_tests(arxml_unit_test)
+  gtest_discover_tests(arxml_unit_test XML_OUTPUT_DIR tests)
   gtest_discover_tests(ara_unit_test)
  endif()
