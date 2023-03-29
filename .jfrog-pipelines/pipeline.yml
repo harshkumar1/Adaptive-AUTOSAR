@@ -60,5 +60,7 @@ pipelines:
             - ls -l
             - ls -l ./bin
             - ls -l ./Testing
+            - ls -l ./Testing/Temporary
+            - cat ./Testing/Temporary/LastTest.log
             - ls -l ./lib
             - save_tests test_results.xml
