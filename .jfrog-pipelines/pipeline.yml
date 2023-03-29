@@ -8,13 +8,14 @@ resources:
 
 pipelines:
   - name: test_repo
+    configuration:
+      nodePool: default-dynamic-nodepool
     steps:
       - name: docker_build_bash
         type: Bash
         configuration:
           inputResources:
             - name: repo_res_autosar
-        nodePool: default-dynamic-nodepool
         execution:
           onExecute:
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
