@@ -33,6 +33,7 @@ pipelines:
         execution:
           onExecute:
             - cd $res_repo_res_autosar_resourcePath
+            - cmake --version
             #- wget https://github.com/Kitware/CMake/releases/download/v3.26.1/cmake-3.26.1-linux-x86_64.sh
             - sudo apt install cmake
             #- sh cmake-3.26.1-linux-x86_64.sh
