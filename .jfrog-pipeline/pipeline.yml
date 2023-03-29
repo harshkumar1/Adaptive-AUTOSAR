@@ -1,0 +1,22 @@
+resources:
+  - name: repo_res_autosar
+    type: GitRepo
+    configuration:
+      gitProvider: Github
+      path: harshkumar1/Adaptive-AUTOSAR
+
+
+pipelines:
+  - name: test_repo
+    steps:
+      - name: docker_build_bash
+        type: Bash
+        configuration:
+          inputResources:
+            - name: repo_res_autosar
+        nodePool: default-dynamic-nodepool
+        execution:
+          onExecute:
+            - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
+            - cmake --build ./build --config Debug
+            - ctest -C ${{env.BUILD_TYPE}}
