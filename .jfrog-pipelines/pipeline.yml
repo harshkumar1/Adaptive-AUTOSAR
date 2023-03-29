@@ -28,6 +28,8 @@ pipelines:
         type: Bash
         configuration:
           affinityGroup: autosar
+          inputResources:
+            - name: repo_res_autosar
           outputResources:
             - name: autosar_build_info
         execution:
@@ -47,6 +49,7 @@ pipelines:
         configuration:
           affinityGroup: autosar
           inputResources:
+            - name: repo_res_autosar
             - name: autosar_build_info
         execution:
           onExecute:
@@ -54,4 +57,4 @@ pipelines:
             - ls -l
             - ctest -C Debug
             #- ls -l
-            - save_tests $res_src_repo_resourcePath/build/target/Testing/
+            - save_tests $res_src_repo_resourcePath/build/Testing/
