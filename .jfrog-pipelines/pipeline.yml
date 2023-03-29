@@ -50,6 +50,7 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
+            - sudo apt install cmake
             - cd $shared_workspace/
             - ls -l
             - cd ./build
