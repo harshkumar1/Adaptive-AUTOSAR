@@ -2,7 +2,7 @@ resources:
   - name: repo_res_autosar
     type: GitRepo
     configuration:
-      gitProvider: Github
+      gitProvider: hk_github
       path: harshkumar1/Adaptive-AUTOSAR
 
 
