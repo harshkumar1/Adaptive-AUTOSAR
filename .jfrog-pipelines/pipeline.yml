@@ -38,10 +38,10 @@ pipelines:
             #- sh cmake-3.26.1-linux-x86_64.sh
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
             - cmake --build ./build --config Debug
-            - cd ./build
-            - ctest -C Debug
-            - ls -l
-            - save_tests $res_src_repo_resourcePath/build/Testing/
+            - cp -r ./build $shared_workspace
+            #- ctest -C Debug
+            #- ls -l
+            #- save_tests $res_src_repo_resourcePath/build/Testing/
       - name: autosar_test
         type: Bash
         configuration:
@@ -50,8 +50,10 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
-            - cd $res_repo_res_autosar_resourcePath
+            - cd $shared_workspace/
             - ls -l
-            - ctest -C Debug
-            #- ls -l
+            - cd ./build
+            - ls -l
+            - ctest -C Debug --output-xunit test_results.xml
+            - ls -l
             - save_tests $res_src_repo_resourcePath/build/Testing/
