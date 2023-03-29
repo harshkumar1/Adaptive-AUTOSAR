@@ -16,6 +16,12 @@ pipelines:
         configuration:
           inputResources:
             - name: repo_res_autosar
+          runtime:
+            type: image
+            image:
+              custom:
+                name: releases-docker.jfrog.io/jfrog/pipelines-u20cpp
+                tag: '9'
         execution:
           onExecute:
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
