@@ -4,7 +4,12 @@ resources:
     configuration:
       gitProvider: hk_github
       path: harshkumar1/Adaptive-AUTOSAR
-
+  - name: autosar_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+      buildName: autosar_example
+      buildNumber: ${run_number}
 
 pipelines:
   - name: autosar_example
@@ -23,6 +28,8 @@ pipelines:
         type: Bash
         configuration:
           affinityGroup: autosar
+          outputResources:
+            - name: autosar_build_info
         execution:
           onExecute:
             - cd $res_repo_res_autosar_resourcePath
@@ -39,6 +46,8 @@ pipelines:
         type: Bash
         configuration:
           affinityGroup: autosar
+          inputResources:
+            - name: autosar_build_info
         execution:
           onExecute:
             - cd $res_repo_res_autosar_resourcePath/build
