@@ -17,7 +17,7 @@ pipelines:
         image:
           custom:
             name: releases-docker.jfrog.io/jfrog/pipelines-u20cpp
-              tag: '9'
+            tag: '9'
     steps:
       - name: autosar_build
         type: Bash
