@@ -33,16 +33,14 @@ pipelines:
         execution:
           onExecute:
             - cd $res_repo_res_autosar_resourcePath
-            #- wget https://github.com/Kitware/CMake/releases/download/v3.26.1/cmake-3.26.1-linux-x86_64.sh
+            - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+            - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'   
+            - sudo apt update
             - sudo apt install cmake
             - cmake --version
-            #- sh cmake-3.26.1-linux-x86_64.sh
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
             - cmake --build ./build --config Debug
             - cp -r ./build $shared_workspace
-            #- ctest -C Debug
-            #- ls -l
-            #- save_tests $res_src_repo_resourcePath/build/Testing/
       - name: autosar_test
         type: Bash
         configuration:
@@ -51,9 +49,12 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
+            - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+            - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'   
+            - sudo apt update
             - sudo apt install cmake
+            - cmake --version
             - cd $shared_workspace/
-            #- ls -l
             - cd ./build
             - ls -l
             - ctest -C Debug --output-junit test_results.xml
