@@ -24,7 +24,7 @@ pipelines:
                 tag: '9'
         execution:
           onExecute:
-            - cd res_repo_res_autosar_resourcepath
+            - cd res_repo_res_autosar_resourcePath
             - wget https://github.com/Kitware/CMake/releases/download/v3.26.1/cmake-3.26.1-linux-x86_64.sh
             - sh cmake-3.26.1-linux-x86_64.sh
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
