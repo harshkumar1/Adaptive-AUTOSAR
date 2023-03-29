@@ -40,7 +40,7 @@ pipelines:
             - cmake --build ./build --config Debug
             #- cd ./build
             #- ctest -C Debug
-            #- ls -l
+            - ls -l
             #- save_tests $res_src_repo_resourcePath/build/target/Testing/
       - name: autosar_test
         type: Bash
@@ -50,7 +50,8 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
-            - cd $res_repo_res_autosar_resourcePath/build
-            - ctest -C Debug
+            - cd $res_repo_res_autosar_resourcePath
             - ls -l
+            - ctest -C Debug
+            #- ls -l
             - save_tests $res_src_repo_resourcePath/build/target/Testing/
