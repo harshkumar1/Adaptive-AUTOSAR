@@ -15,8 +15,6 @@ pipelines:
   - name: autosar_example
     configuration:
       nodePool: default-dynamic-nodepool
-      inputResources:
-        - name: repo_res_autosar
       runtime:
         type: image
         image:
@@ -28,16 +26,13 @@ pipelines:
         type: Bash
         configuration:
           affinityGroup: autosar
+          inputResources:
+            - name: repo_res_autosar
           outputResources:
             - name: autosar_build_info
         execution:
           onExecute:
             - cd $res_repo_res_autosar_resourcePath
-            #- wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-            #- sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'   
-            #- sudo apt update
-            #- sudo apt install cmake
-            - cmake --version
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
             - cmake --build ./build --config Debug
             - cp -r ./build $shared_workspace
@@ -49,20 +44,8 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
-            #- wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-            #- sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'   
-            #- sudo apt update
-            #- sudo apt install cmake
-            - cmake --version
             - cd $shared_workspace/
             - cd ./build
             - ls -l
             - ctest -C Debug --output-junit test_results.xml
-            - find ./ -name "*.xml"
-            - ls -l
-            - ls -l ./bin
-            - ls -l ./Testing
-            - ls -l ./Testing/Temporary
-            - cat ./Testing/Temporary/LastTest.log
-            - ls -l ./lib
             - save_tests test_results.xml
