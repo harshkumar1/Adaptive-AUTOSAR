@@ -53,5 +53,7 @@ pipelines:
             #- cp bin/ara_unit_test ara_unit_test
             #- cp bin/arxml_unit_test arxml_unit_test
             - ls -l
+            - ./bin/ara_unit_test --gtest_list_tests
+            - ./bin/arxml_unit_test --gtest_list_tests
             - ctest -C Debug --output-junit test_results.xml
             - save_tests test_results.xml
