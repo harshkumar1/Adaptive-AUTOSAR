@@ -47,5 +47,5 @@ pipelines:
             - cd $shared_workspace/
             - cd ./build
             - ls -l
-            - ctest -C Debug --output-junit test_results.xml ara_unit_test
+            - ctest -C Debug --output-junit test_results.xml -R ara_unit_test
             - save_tests test_results.xml
