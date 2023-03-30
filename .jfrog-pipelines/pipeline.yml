@@ -37,7 +37,6 @@ pipelines:
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
             - cmake --build ./build --config Debug
             - cp -r ./build $shared_workspace
-            #- add_cache_files ./build autosar_build
       - name: autosar_full_matrix_test
         type: Matrix
         stepMode: Bash
@@ -51,29 +50,10 @@ pipelines:
             - module: '*'
         execution:
           onExecute:
-            #- restore_cache_files autosar_build /tmp/
-            #- ls -l /tmp/
             - cd $shared_workspace/
             - cd ./build
             - echo $module
-            #- cd $res_repo_res_autosar_resourcePath/build
-            - ctest -R "$module" -C Debug --output-junit test_results.xml
+            - ctest -C Debug --output-junit test_results.xml #-R "regEx"
           onComplete:
-            - sleep 60
+            - sleep 120
             - save_tests test_results.xml
-      #- name: autosar_partial_test
-       # type: Bash
-        #configuration:
-         # #affinityGroup: autosar
-          #inputSteps: 
-           # - name: autosar_build
-        #execution:
-          #onExecute:
-           # - restore_cache_files autosar_build /tmp/
-            #- ls -l /tmp/
-            #- cd $shared_workspace/
-            #- cd ./build
-            #- cd $res_repo_res_autosar_resourcePath/build
-            #- ctest -R 'ArxmlNodeTest*' -C Debug --output-junit test_results.xml
-          #onComplete:
-          #  - save_tests test_results.xml
