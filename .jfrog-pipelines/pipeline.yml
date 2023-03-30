@@ -38,7 +38,7 @@ pipelines:
             - cmake --build ./build --config Debug
             - cp -r ./build $shared_workspace
             #- add_cache_files ./build autosar_build
-      - name: autosar_full_test
+      - name: autosar_full_matrix_test
         type: Matrix
         stepMode: Bash
         configuration:
