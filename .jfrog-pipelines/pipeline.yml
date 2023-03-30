@@ -46,6 +46,12 @@ pipelines:
           onExecute:
             - cd $shared_workspace/
             - cd ./build
+            #-rwxr-xr-x 1 root root 19579464 Mar 29 18:13 ara_unit_test
+            ##-rwxr-xr-x 1 root root  3829896 Mar 29 18:13 arxml_unit_test
+            - mkdir ara_unit_test
+            - mkdir arxml_unit_test
+            - cp bin/ara_unit_test ara_unit_test
+            - cp bin/arxml_unit_test arxml_unit_test
             - ls -l
-            - ctest -C Debug --output-junit test_results.xml -R ara_unit_test
+            - ctest -C Debug --output-junit test_results.xml --test-dir ./ara_unit_test
             - save_tests test_results.xml
