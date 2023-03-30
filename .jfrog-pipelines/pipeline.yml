@@ -36,6 +36,7 @@ pipelines:
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
             - cmake --build ./build --config Debug
             - cp -r ./build $shared_workspace
+            - add_cache_files ./build autosar_build
       - name: autosar_full_test
         type: Bash
         configuration:
@@ -44,6 +45,8 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
+            - restore_cache_files autosar_build /tmp/
+            - ls -l /tmp/
             - cd $shared_workspace/
             - cd ./build
             - ctest -C Debug --output-junit test_results.xml
@@ -56,6 +59,8 @@ pipelines:
             - name: autosar_build_info
         execution:
           onExecute:
+            - restore_cache_files autosar_build /tmp/
+            - ls -l /tmp/
             - cd $shared_workspace/
             - cd ./build
             - ctest -R 'ArxmlNodeTest*' -C Debug --output-junit test_results.xml
