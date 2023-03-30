@@ -39,7 +39,8 @@ pipelines:
             - cp -r ./build $shared_workspace
             #- add_cache_files ./build autosar_build
       - name: autosar_full_test
-        type: Bash
+        type: Matrix
+        stepMode: Bash
         configuration:
           affinityGroup: autosar
           inputSteps: 
