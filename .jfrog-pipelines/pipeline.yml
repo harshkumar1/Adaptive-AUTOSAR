@@ -25,7 +25,7 @@ pipelines:
       - name: autosar_build
         type: Bash
         configuration:
-          affinityGroup: autosar
+          #affinityGroup: autosar
           inputResources:
             - name: repo_res_autosar
           outputResources:
@@ -35,33 +35,35 @@ pipelines:
             - cd $res_repo_res_autosar_resourcePath
             - cmake -B ./build -DCMAKE_BUILD_TYPE=Debug
             - cmake --build ./build --config Debug
-            - cp -r ./build $shared_workspace
-            - add_cache_files ./build autosar_build
+            #- cp -r ./build $shared_workspace
+            #- add_cache_files ./build autosar_build
       - name: autosar_full_test
         type: Bash
         configuration:
           affinityGroup: autosar
-          inputResources:
-            - name: autosar_build_info
+          inputSteps: 
+            - name: autosar_build
         execution:
           onExecute:
             - restore_cache_files autosar_build /tmp/
             - ls -l /tmp/
-            - cd $shared_workspace/
-            - cd ./build
+            #- cd $shared_workspace/
+            #- cd ./build
+            - cd $res_repo_res_autosar_resourcePath/build
             - ctest -C Debug --output-junit test_results.xml
             - save_tests test_results.xml
       - name: autosar_partial_test
         type: Bash
         configuration:
-          affinityGroup: autosar
-          inputResources:
-            - name: autosar_build_info
+          #affinityGroup: autosar
+          inputSteps: 
+            - name: autosar_build
         execution:
           onExecute:
             - restore_cache_files autosar_build /tmp/
             - ls -l /tmp/
-            - cd $shared_workspace/
-            - cd ./build
+            #- cd $shared_workspace/
+            #- cd ./build
+            - cd $res_repo_res_autosar_resourcePath/build
             - ctest -R 'ArxmlNodeTest*' -C Debug --output-junit test_results.xml
             - save_tests test_results.xml
