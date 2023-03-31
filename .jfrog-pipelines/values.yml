@@ -6,4 +6,4 @@ var:
   nodePool: default-dynamic-nodepool
   artifactory: hk_artifactory
   customImage: pipelines.jfrog.io/pipelines-runtime-images/pipelines-w19cpp-ckmake
-  customImageTag: "1"
+  customImageTag: 1
