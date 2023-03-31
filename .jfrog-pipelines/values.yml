@@ -1,5 +1,5 @@
 var:
-  pipelineName: autosar_build
+  pipelineName: 'autosar_build'
   gitProvider: hk_github
   path: harshkumar1/Adaptive-AUTOSAR
   branches: master
