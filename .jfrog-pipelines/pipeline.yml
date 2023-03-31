@@ -23,7 +23,7 @@ pipelines:
         image:
           custom:
             name: {{ .Values.var.customImage }}
-            tag: 1
+            tag: '1'
 
     steps:
       - name: autosar_build
