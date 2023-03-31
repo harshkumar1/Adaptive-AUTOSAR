@@ -2,26 +2,27 @@ resources:
   - name: repo_res_autosar
     type: GitRepo
     configuration:
-      gitProvider: hk_github
-      path: harshkumar1/Adaptive-AUTOSAR
+      gitProvider: {{ .Values.var.gitProvider }}
+      path: {{ .Values.var.path }}
   - name: autosar_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: hk_artifactory
-      buildName: autosar_example
+      sourceArtifactory: {{ .Values.var.artifactory }}
+      buildName: {{ .Values.var.pipelineName }}
       buildNumber: ${run_number}
 
 pipelines:
-  - name: autosar_example
+  - name: {{ .Values.var.pipelineName }}
     configuration:
-      nodePool: default-dynamic-nodepool
+      nodePool: {{ .Values.var.nodePool }}
       jfrogCliVersion: '2'
       runtime:
         type: image
         image:
           custom:
-            name: pipelines.jfrog.io/pipelines-runtime-images/pipelines-w19cpp-ckmake
-            tag: '1'
+            name: {{ .Values.var.customImage }}
+            tag: {{ .Values.var.customImageTag }}
+            
     steps:
       - name: autosar_build
         type: Bash
