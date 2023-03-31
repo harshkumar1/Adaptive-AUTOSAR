@@ -1,3 +1,5 @@
+valuesFilePath: ./values.yml
+
 resources:
   - name: repo_res_autosar
     type: GitRepo
@@ -22,7 +24,7 @@ pipelines:
           custom:
             name: {{ .Values.var.customImage }}
             tag: {{ .Values.var.customImageTag }}
-            
+
     steps:
       - name: autosar_build
         type: Bash
