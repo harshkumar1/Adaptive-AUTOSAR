@@ -3,7 +3,7 @@ var:
   gitProvider: hk_github
   path: harshkumar1/Adaptive-AUTOSAR
   branches: master
-  nodePool: default-dynamic-nodepool
+  nodePool: ubuntu204
   artifactory: hk_artifactory
   customImage: pipelines.jfrog.io/pipelines-runtime-images/pipelines-w19cpp-ckmake
   customImageTag: 1
