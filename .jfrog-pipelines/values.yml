@@ -1,9 +1,9 @@
 var:
-  pipelineName: autosar_build
+  pipelineName: demo_autosar_project
   gitProvider: hk_github
   path: harshkumar1/Adaptive-AUTOSAR
   branches: master
-  nodePool: ubuntu204
+  nodePool: default-dynamic-nodepool
   artifactory: hk_artifactory
   customImage: pipelines.jfrog.io/pipelines-runtime-images/pipelines-w19cpp-ckmake
   customImageTag: 1

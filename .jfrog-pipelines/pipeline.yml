@@ -6,12 +6,6 @@ resources:
     configuration:
       gitProvider: {{ .Values.var.gitProvider }}
       path: {{ .Values.var.path }}
-  - name: autosar_build_info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: {{ .Values.var.artifactory }}
-      buildName: {{ .Values.var.pipelineName }}
-      buildNumber: ${run_number}
 
 pipelines:
   - name: {{ .Values.var.pipelineName }}
@@ -32,8 +26,6 @@ pipelines:
           affinityGroup: autosar
           inputResources:
             - name: repo_res_autosar
-          outputResources:
-            - name: autosar_build_info
         execution:
           onExecute:
             - cd $res_repo_res_autosar_resourcePath
