@@ -58,5 +58,4 @@ pipelines:
             - echo $module
             - ctest -C Debug --output-junit test_results.xml #-R "regEx"
           onComplete:
-            - sleep 120
             - save_tests test_results.xml
